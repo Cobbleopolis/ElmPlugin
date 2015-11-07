@@ -43,7 +43,7 @@ public class ElmSyntaxHighlighter extends SyntaxHighlighterBase {
     public Lexer getHighlightingLexer() {
         FlexAdapter flexAdapter = new FlexAdapter(new ElmColorLexer((Reader) null));
         if (flexAdapter == null) {
-            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", new Object[]{"com/davidmis/elmplugin/ElmSyntaxHighlighter", "getHighlightingLexer"}));
+            throw new IllegalStateException(String.format("@NotNull method %s.%s mustk not return null", new Object[]{"com/davidmis/elmplugin/ElmSyntaxHighlighter", "getHighlightingLexer"}));
         } else {
             return flexAdapter;
         }
