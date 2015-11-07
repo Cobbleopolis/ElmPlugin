@@ -1,39 +1,50 @@
 package com.davidmis.elmplugin;
 
-        import com.intellij.openapi.fileTypes.LanguageFileType;
-        import org.jetbrains.annotations.NotNull;
-        import org.jetbrains.annotations.Nullable;
+import com.intellij.openapi.fileTypes.LanguageFileType;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-        import javax.swing.*;
+import javax.swing.*;
 
 public class ElmFileType extends LanguageFileType {
+
     public static final ElmFileType INSTANCE = new ElmFileType();
+
 
     private ElmFileType() {
         super(ElmLanguage.INSTANCE);
     }
 
     @NotNull
-    @Override
     public String getName() {
-        return "Elm file";
+        if ("Elm file" == null) {
+            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", new Object[]{"com/davidmis/elmplugin/ElmFileType", "getName"}));
+        } else {
+            return "Elm file";
+        }
     }
 
     @NotNull
-    @Override
     public String getDescription() {
-        return "Elm language file";
+        if ("Elm language file" == null) {
+            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", new Object[]{"com/davidmis/elmplugin/ElmFileType", "getDescription"}));
+        } else {
+            return "Elm language file";
+        }
     }
 
     @NotNull
-    @Override
     public String getDefaultExtension() {
-        return "elm";
+        if ("elm" == null) {
+            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", new Object[]{"com/davidmis/elmplugin/ElmFileType", "getDefaultExtension"}));
+        } else {
+            return "elm";
+        }
     }
 
     @Nullable
-    @Override
     public Icon getIcon() {
         return ElmIcons.FILE;
     }
+
 }

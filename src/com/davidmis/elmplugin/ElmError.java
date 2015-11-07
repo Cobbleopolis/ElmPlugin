@@ -3,32 +3,21 @@ package com.davidmis.elmplugin;
 import com.intellij.openapi.editor.Document;
 
 public class ElmError {
-    private int startLine;
-    private int endLine;
+
+    private int line;
     private int startCol;
     private int endCol;
     private String message;
     private int startIndex;
     private int endIndex;
 
+
     public ElmError(int line, int startCol, int endCol, String message, Document document) {
-        this.startLine = line;
-        this.endLine = line;
+        this.line = line;
         this.startCol = startCol;
         this.endCol = endCol;
         this.message = message;
-
-        setIndecis(document);
-    }
-
-    public ElmError(int startLine, int endLine, int startCol, int endCol, String message, Document document) {
-        this.startLine = startLine;
-        this.endLine = endLine;
-        this.startCol = startCol;
-        this.endCol = endCol;
-        this.message = message;
-
-        setIndecis(document);
+        this.setIndecis(document);
     }
 
     public ElmError(int startIndex, int endIndex, String message) {
@@ -37,36 +26,40 @@ public class ElmError {
         this.message = message;
     }
 
+    public int getLine() {
+        return this.line;
+    }
+
     public int getStartCol() {
-        return startCol;
+        return this.startCol;
     }
 
     public int getEndCol() {
-        return endCol;
+        return this.endCol;
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 
     public int getStartIndex() {
-        return startIndex;
+        return this.startIndex;
     }
 
     private void setStartIndex(Document document) {
-        this.startIndex = document.getLineStartOffset(this.startLine) + this.startCol;
+        this.startIndex = document.getLineStartOffset(this.line) + this.startCol;
     }
 
     public int getEndIndex() {
-        return endIndex;
+        return this.endIndex;
     }
 
     private void setEndIndex(Document document) {
-        this.endIndex = document.getLineStartOffset(this.endLine) + this.endCol;
+        this.endIndex = document.getLineStartOffset(this.line) + this.endCol;
     }
 
     private void setIndecis(Document document) {
-        setStartIndex(document);
-        setEndIndex(document);
+        this.setStartIndex(document);
+        this.setEndIndex(document);
     }
 }

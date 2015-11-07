@@ -7,9 +7,14 @@ import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 
 public class ElmSyntaxHighlighterFactory extends SyntaxHighlighterFactory {
+
     @NotNull
-    @Override
     public SyntaxHighlighter getSyntaxHighlighter(Project project, VirtualFile virtualFile) {
-        return new ElmSyntaxHighlighter();
+        ElmSyntaxHighlighter syntaxHighlighter = new ElmSyntaxHighlighter();
+        if (syntaxHighlighter == null) {
+            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", new Object[]{"com/davidmis/elmplugin/ElmSyntaxHighlighterFactory", "getSyntaxHighlighter"}));
+        } else {
+            return syntaxHighlighter;
+        }
     }
 }

@@ -7,61 +7,48 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-/**
- * Created by david on 1/26/15.
- */
 public class ElmSettingsConfigurable implements Configurable {
+
     private ElmSettingsComponent component;
 
+
     @Nls
-    @Override
     public String getDisplayName() {
         return "Elm language";
     }
 
     @Nullable
-    @Override
     public String getHelpTopic() {
         return "Elm language";
     }
 
     @Nullable
-    @Override
     public JComponent createComponent() {
-        if (component == null) {
-            component = new ElmSettingsComponent();
+        if (this.component == null) {
+            this.component = new ElmSettingsComponent();
         }
-        return component.mainPanel;
+
+        return this.component.mainPanel;
     }
 
-    @Override
     public boolean isModified() {
         return true;
     }
 
-    @Override
     public void apply() throws ConfigurationException {
-        if(component == null) {
-            return;
+        if (this.component != null) {
+            String newPath = this.component.pathField.getText() == null ? "" : this.component.pathField.getText();
+            ElmPersister.instance.setPathToElmMake(newPath);
+            System.out.println("Path to elm-make: " + newPath);
+            Boolean errorCheckingEnabled = Boolean.valueOf(this.component.enableErrorCheckingCheckBox.isSelected());
+            ElmPersister.instance.setEnableErrorChecking(errorCheckingEnabled.booleanValue());
+            System.out.println("Error checking enabled " + errorCheckingEnabled);
         }
-
-
-        String newPath = component.pathField.getText() == null ? "" : component.pathField.getText();
-        ElmPersister.instance.setPathToElmMake(newPath);
-        System.out.println("Path to elm-make: " + newPath);
-
-        Boolean errorCheckingEnabled = component.enableErrorCheckingCheckBox.isSelected();
-        ElmPersister.instance.setEnableErrorChecking(errorCheckingEnabled);
-        System.out.println("Error checking enabled " + errorCheckingEnabled);
     }
 
-    @Override
     public void reset() {
-
     }
 
-    @Override
     public void disposeUIResources() {
-
     }
 }

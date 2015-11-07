@@ -95,8 +95,10 @@ NUMBER = [0-9]* | ([0-9]* [.]+ [0-9]+)
 "&&" | "||" | "+" | "^" | ">" | "<" |
 "->" | "|"  | "==" | "<|" | "|>" | "<~" | "~>" |
 "~" | "*" | "," | "{" | "}" | "(" | ")" | "[" | "]" |
-"`"
+"`" | "%"
                                         { return ElmTypes.OPERATOR; }
+
+";" {return ElmTypes.SEMICOLON;}
 
 <YYINITIAL> {IDENTIFIER}                                    { return ElmTypes.IDENTIFIER; }
 

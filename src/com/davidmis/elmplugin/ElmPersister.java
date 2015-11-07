@@ -2,40 +2,37 @@ package com.davidmis.elmplugin;
 
 import com.intellij.ide.util.PropertiesComponent;
 
-/**
- * Created by david on 1/26/15.
- */
 public class ElmPersister {
+
     public static ElmPersister instance = new ElmPersister();
-
-    private ElmPersister() {}
-
     private String pathToElmMake;
     private String enableErrorChecking;
 
+
     public String getPathToElmMake() {
-        if(pathToElmMake == null) {
-            pathToElmMake = PropertiesComponent.getInstance().getValue("com.davidmis.elmplugin.pathToElmMake", "elm-make");
+        if (this.pathToElmMake == null) {
+            this.pathToElmMake = PropertiesComponent.getInstance().getValue("com.davidmis.elmplugin.pathToElmMake", "elm-make");
         }
 
-        return pathToElmMake;
+        return this.pathToElmMake;
     }
 
     public void setPathToElmMake(String path) {
-        pathToElmMake = path;
-        PropertiesComponent.getInstance().setValue("com.davidmis.elmplugin.pathToElmMake", pathToElmMake);
+        this.pathToElmMake = path;
+        PropertiesComponent.getInstance().setValue("com.davidmis.elmplugin.pathToElmMake", this.pathToElmMake);
     }
 
     public boolean getEnableErrorChecking() {
-        if(enableErrorChecking == null) {
-            enableErrorChecking = PropertiesComponent.getInstance().getValue("com.davidmis.elmplugin.enableErrorChecking", "T");
+        if (this.enableErrorChecking == null) {
+            this.enableErrorChecking = PropertiesComponent.getInstance().getValue("com.davidmis.elmplugin.enableErrorChecking", "T");
         }
 
-        return enableErrorChecking.equalsIgnoreCase("T");
+        return this.enableErrorChecking.equalsIgnoreCase("T");
     }
 
     public void setEnableErrorChecking(boolean enabled) {
-        enableErrorChecking = enabled ? "T" : "F";
-        PropertiesComponent.getInstance().setValue("com.davidmis.elmplugin.enableErrorChecking", enableErrorChecking);
+        this.enableErrorChecking = enabled ? "T" : "F";
+        PropertiesComponent.getInstance().setValue("com.davidmis.elmplugin.enableErrorChecking", this.enableErrorChecking);
     }
+
 }

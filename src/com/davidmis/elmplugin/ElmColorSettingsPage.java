@@ -1,6 +1,5 @@
 package com.davidmis.elmplugin;
 
-import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
@@ -12,54 +11,68 @@ import javax.swing.*;
 import java.util.Map;
 
 public class ElmColorSettingsPage implements ColorSettingsPage {
+
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Comment", ElmSyntaxHighlighter.COMMENT),
+            new AttributesDescriptor("Bad Character", ElmSyntaxHighlighter.BAD_CHARACTER),
+            new AttributesDescriptor("Operators", ElmSyntaxHighlighter.OPERATOR)
     };
 
+
     @Nullable
-    @Override
     public Icon getIcon() {
         return ElmIcons.FILE;
     }
 
     @NotNull
-    @Override
     public SyntaxHighlighter getHighlighter() {
-        return new ElmSyntaxHighlighter();
+        ElmSyntaxHighlighter syntaxHighlighter = new ElmSyntaxHighlighter();
+        if (syntaxHighlighter == null) {
+            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", new Object[]{"com/davidmis/elmplugin/ElmColorSettingsPage", "getHighlighter"}));
+        } else {
+            return syntaxHighlighter;
+        }
     }
 
     @NotNull
-    @Override
     public String getDemoText() {
-        return "import Graphics.Element (..) \n" +
-               "import Text (..) \n\n\n" +
-                "--Simple example program\n\n" +
-               "main : Element\n" +
-                "main = " +
-                "plainText \"Hello, World!\"";
+        if ("import Graphics.Element (..) \nimport Text (..) \n\n\n--Simple example program\n\nmain : Element\nmain = plainText \"Hello, World!\"" == null) {
+            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", new Object[]{"com/davidmis/elmplugin/ElmColorSettingsPage", "getDemoText"}));
+        } else {
+            return "import Graphics.Element (..) \nimport Text (..) \n\n\n--Simple example program\n\nmain : Element\nmain = plainText \"Hello, World!\"";
+        }
     }
 
     @Nullable
-    @Override
-    public Map<String, TextAttributesKey> getAdditionalHighlightingTagToDescriptorMap() {
+    public Map getAdditionalHighlightingTagToDescriptorMap() {
         return null;
     }
 
     @NotNull
-    @Override
     public AttributesDescriptor[] getAttributeDescriptors() {
-        return DESCRIPTORS;
+        if (DESCRIPTORS == null) {
+            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", new Object[]{"com/davidmis/elmplugin/ElmColorSettingsPage", "getAttributeDescriptors"}));
+        } else {
+            return DESCRIPTORS;
+        }
     }
 
     @NotNull
-    @Override
     public ColorDescriptor[] getColorDescriptors() {
-        return ColorDescriptor.EMPTY_ARRAY;
+        if (ColorDescriptor.EMPTY_ARRAY == null) {
+            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", new Object[]{"com/davidmis/elmplugin/ElmColorSettingsPage", "getColorDescriptors"}));
+        } else {
+            return ColorDescriptor.EMPTY_ARRAY;
+        }
     }
 
     @NotNull
-    @Override
     public String getDisplayName() {
-        return "Elm";
+        if ("Elm" == null) {
+            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", new Object[]{"com/davidmis/elmplugin/ElmColorSettingsPage", "getDisplayName"}));
+        } else {
+            return "Elm";
+        }
     }
+
 }

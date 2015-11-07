@@ -10,22 +10,26 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 
 public class ElmFile extends PsiFileBase {
+
     public ElmFile(@NotNull FileViewProvider viewProvider) {
         super(viewProvider, ElmLanguage.INSTANCE);
+        if (viewProvider == null)
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter \'%s\' of %s.%s must not be null", new Object[]{"viewProvider", "com/davidmis/elmplugin/psi/ElmFile", "<init>"}));
     }
 
     @NotNull
-    @Override
     public FileType getFileType() {
-        return ElmFileType.INSTANCE;
+        if (ElmFileType.INSTANCE == null) {
+            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", new Object[]{"com/davidmis/elmplugin/psi/ElmFile", "getFileType"}));
+        } else {
+            return ElmFileType.INSTANCE;
+        }
     }
 
-    @Override
     public String toString() {
         return "Elm Language File";
     }
 
-    @Override
     public Icon getIcon(int flags) {
         return super.getIcon(flags);
     }
